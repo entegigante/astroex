@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build --base=/astroex",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "astro build --base=astroex"
+    "deploy": "astro build --base=/astroex"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
