@@ -1,5 +1,5 @@
 ---
-
+import '../styles/tailwind.css';
 ---
 
 <html lang="en">
@@ -11,6 +11,14 @@
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
-	</body>
+  <h1 class="text-3xl font-bold text-center text-blue-500">
+    ¡Hola Astro con Tailwind!
+  </h1>
+  <p class="mt-4 text-lg text-gray-700">
+    ¡Si ves este texto con estilo, significa que Tailwind está funcionando!
+  </p>
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">
+    Haz clic
+  </button>
+</body>
 </html>
