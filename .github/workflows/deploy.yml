@@ -27,7 +27,7 @@ jobs:
         run: npm install
 
       - name: Build Astro project
-        run: npm run build
+        run: npm run build --base=/astroex
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
