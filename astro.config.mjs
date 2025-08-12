@@ -11,7 +11,6 @@ const __dirname = dirname(__filename);
 // https://astro.build/config
 export default defineConfig({
   site: 'https://entegigante.github.io', // Tu URL de GitHub Pages
-  base: '/astroex', // El nombre de tu repositorio
   integrations: [tailwind()],
   vite: {
     resolve: {
