@@ -1,7 +1,7 @@
 # Astro + Tailwind + GitHub Pages Project
 
 ## Resumen del Proyecto
-Sitio web estático, construido con Astro 5.x y estilizado con Tailwind CSS. Se desplegará en GitHub Pages.
+Sitio web estático, construido con Astro 5.x y estilizado con Tailwind CSS. Se desplegó en GitHub Pages.
 
 ## Entorno de Desarrollo
 - **OS**: macOS Sequoia 15.6
@@ -20,7 +20,9 @@ Sitio web estático, construido con Astro 5.x y estilizado con Tailwind CSS. Se 
 - **Despliegue en GitHub Pages**:
     - Se creó un repositorio en GitHub.
     - Se configuró un flujo de trabajo de GitHub Actions (`.github/workflows/deploy.yml`) para construir y desplegar el sitio en la rama `gh-pages`.
+    - La configuración de GitHub Pages se estableció en "GitHub Actions", lo que confirma que el flujo de trabajo es el que gestiona el despliegue.
 
 ## Tareas Pendientes
 - [x] Crear la primera página y componentes.
 - [x] Configurar el despliegue en GitHub Pages.
+- [x] Confirmar la configuración de GitHub Actions.
