@@ -1,26 +1,83 @@
----
----
+<!-- 
+  Este es el componente de navegación (Navbar) para el proyecto de Astro.
+  Utiliza Preline y Tailwind CSS para crear una barra de navegación responsiva,
+  con un menú colapsable para dispositivos móviles y un menú desplegable
+  para la selección de idioma.
+  Se ha añadido un script para manejar dinámicamente el ícono de la bandera
+  utilizando archivos SVG locales.
+-->
+<header class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white text-base py-3 shadow-lg shadow-purple-200">
+  <nav class="max-w-[64rem] w-full mx-auto px-4 flex flex-wrap basis-full items-center justify-between" aria-label="Global">
+    <!-- Logo principal -->
+    <a class="sm:order-1 flex-none text-xl font-semibold dark:text-white" href="/">
+      <!-- Se usa el prefijo `img` para Astro -->
+      <img src="/public/images/exologo.webp" alt="Exosfera Logo" class="h-12 w-auto" />
+    </a>
 
-<header class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-3 dark:bg-neutral-800">
-  <nav class="max-w-[85rem] w-full mx-auto px-4 flex flex-wrap basis-full items-center justify-between">
-    <a class="sm:order-1 flex-none text-xl font-semibold dark:text-white focus:outline-hidden focus:opacity-80" href="#">Brand</a>
+    <!-- Contenedor del menú desplegable de idioma y el botón de toggle para móviles -->
     <div class="sm:order-3 flex items-center gap-x-2">
-      <button type="button" class="sm:hidden hs-collapse-toggle relative size-9 flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10" id="hs-navbar-alignment-collapse" aria-expanded="false" aria-controls="hs-navbar-alignment" aria-label="Toggle navigation" data-hs-collapse="#hs-navbar-alignment">
-        <svg class="hs-collapse-open:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
-        <svg class="hs-collapse-open:block hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      <!-- Botón de toggle del menú para móviles. Las clases `hs-collapse-toggle` y `data-hs-collapse` son de Preline. -->
+      <button type="button" class="sm:hidden hs-collapse-toggle relative size-9 flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-white dark:hover:bg-white/10" id="hs-navbar-alignment-collapse-1" aria-expanded="false" aria-controls="hs-navbar-alignment-1" data-hs-collapse="#hs-navbar-alignment-1" aria-label="Toggle navigation">
+        <!-- Ícono de hamburguesa para cuando el menú está cerrado -->
+        <svg class="hs-collapse-open:hidden flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+        <!-- Ícono de cruz para cuando el menú está abierto -->
+        <svg class="hs-collapse-open:block hidden flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         <span class="sr-only">Toggle</span>
       </button>
-      <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700">
-        Button
-      </button>
+      
+      <!-- Contenedor del selector de idioma y la bandera -->
+      <div id="country-selector-wrapper" class="inline-flex items-center gap-2">
+        <!-- Selector de idioma -->
+        <select id="country-select" class="py-1 ps-2 pe-4 block cursor-pointer bg-white border border-purple-400 rounded-lg text-xs font-light text-gray-700 hover:bg-gray-100 focus:border-blue-500 focus:ring-blue-500">
+          <option value="cl" selected>CL</option>
+          <option value="br">BR</option>
+          <option value="ar">AR</option>
+          <option value="us">US</option>
+        </select>
+        <!-- Imagen de la bandera (este será dinámico) -->
+        <img id="flag-icon" class="w-5 h-5 rounded-sm" src="/flags/cl-Chile-1x1.svg" alt="Bandera del país seleccionado">
+      </div>
+      <!-- Fin del selector de idioma -->
+
     </div>
-    <div id="hs-navbar-alignment" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:grow-0 sm:basis-auto sm:block sm:order-2" aria-labelledby="hs-navbar-alignment-collapse">
+
+    <!-- Menú principal de la navegación. Este es el que se colapsa en móviles. -->
+    <div id="hs-navbar-alignment-1" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:grow-0 sm:basis-auto sm:block sm:order-2" aria-labelledby="hs-navbar-alignment-collapse-1">
       <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:mt-0 sm:ps-5">
-        <a class="font-medium text-blue-500 focus:outline-hidden" href="#" aria-current="page">Landing</a>
-        <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-hidden focus:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500" href="#">Account</a>
-        <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-hidden focus:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500" href="#">Work</a>
-        <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-hidden focus:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500" href="#">Blog</a>
+        <a class="font-medium text-gray-700 hover:text-gray-400 focus:outline-none focus:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" href="/" aria-current="page">Inicio</a>
+        <a class="font-medium text-gray-700 hover:text-gray-400 focus:outline-none focus:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" href="/servicios">Servicios</a>
+        <a class="font-medium text-gray-700 hover:text-gray-400 focus:outline-none focus:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" href="/proyectos">Proyectos</a>
+        <a class="font-medium text-gray-700 hover:text-gray-400 focus:outline-none focus:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" href="/nosotros">Nosotros</a>
       </div>
     </div>
   </nav>
 </header>
+<!-- Script para el comportamiento dinámico del selector de país -->
+<script>
+  // Mapeo de valores del selector a la ruta de los archivos SVG
+  const countryFlags = {
+    'cl': '/flags/cl-Chile-1x1.svg',
+    'br': '/flags/br-Brazil-1x1.svg',
+    'ar': '/flags/ar-Argentina-1x1.svg',
+    'us': '/flags/us-United-States-of-America-1x1.svg'
+  };
+
+  const countrySelect = document.getElementById('country-select');
+  const flagIcon = document.getElementById('flag-icon');
+
+  // Función para actualizar la imagen de la bandera según la opción seleccionada
+  function updateFlag() {
+    const selectedValue = countrySelect.value;
+    const flagPath = countryFlags[selectedValue];
+
+    if (flagPath) {
+      flagIcon.src = flagPath;
+    }
+  }
+
+  // Escucha el evento 'change' del selector
+  countrySelect.addEventListener('change', updateFlag);
+
+  // Llama a la función al cargar la página para mostrar la bandera por defecto
+  document.addEventListener('DOMContentLoaded', updateFlag);
+</script>
