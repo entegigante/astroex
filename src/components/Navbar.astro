@@ -11,7 +11,7 @@
     <!-- Logo principal -->
     <a class="sm:order-1 flex-none text-xl font-semibold dark:text-white" href="/">
       <!-- Se usa el prefijo `img` para Astro -->
-      <img src="/public/images/exologo.webp" alt="Exosfera Logo" class="h-12 w-auto" />
+      <img src="../images/exologo.webp" alt="Exosfera Logo" class="h-12 w-auto" />
     </a>
 
     <!-- Contenedor del menú desplegable de idioma y el botón de toggle para móviles -->
@@ -35,7 +35,7 @@
           <option value="us">US</option>
         </select>
         <!-- Imagen de la bandera (este será dinámico) -->
-        <img id="flag-icon" class="w-5 h-5 rounded-sm" src="/flags/cl-Chile-1x1.svg" alt="Bandera del país seleccionado">
+        <img id="flag-icon" class="w-5 h-5 rounded-sm" src="../flags/cl-Chile-1x1.svg" alt="Bandera del país seleccionado">
       </div>
       <!-- Fin del selector de idioma -->
 
@@ -56,10 +56,10 @@
 <script>
   // Mapeo de valores del selector a la ruta de los archivos SVG
   const countryFlags = {
-    'cl': '/flags/cl-Chile-1x1.svg',
-    'br': '/flags/br-Brazil-1x1.svg',
-    'ar': '/flags/ar-Argentina-1x1.svg',
-    'us': '/flags/us-United-States-of-America-1x1.svg'
+    'cl': '../flags/cl-Chile-1x1.svg',
+    'br': '../flags/br-Brazil-1x1.svg',
+    'ar': '../flags/ar-Argentina-1x1.svg',
+    'us': '../flags/us-United-States-of-America-1x1.svg'
   };
 
   const countrySelect = document.getElementById('country-select');
