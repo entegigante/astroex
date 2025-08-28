@@ -11,7 +11,7 @@
     <!-- Logo principal -->
     <a class="sm:order-1 flex-none text-xl font-semibold dark:text-white" href="/">
       <!-- Se usa el prefijo `img` para Astro -->
-      <img src="../images/exologo.webp" alt="Exosfera Logo" class="h-12 w-auto" />
+      <img src="/images/exologo.webp" alt="Exosfera Logo" class="h-12 w-auto" />
     </a>
 
     <!-- Contenedor del menú desplegable de idioma y el botón de toggle para móviles -->
@@ -29,13 +29,13 @@
       <div id="country-selector-wrapper" class="inline-flex items-center gap-2">
         <!-- Selector de idioma -->
         <select id="country-select" class="py-1 ps-2 pe-4 block cursor-pointer bg-white border border-purple-400 rounded-lg text-xs font-light text-gray-700 hover:bg-gray-100 focus:border-blue-500 focus:ring-blue-500">
-          <option value="cl" selected>CL</option>
-          <option value="br">BR</option>
-          <option value="ar">AR</option>
-          <option value="us">US</option>
+          <option value="cl" selected>Chile (CL)</option>
+          <option value="br">Brasil (BR)</option>
+          <option value="ar">Argentina (AR)</option>
+          <option value="us">English (US)</option>
         </select>
         <!-- Imagen de la bandera (este será dinámico) -->
-        <img id="flag-icon" class="w-5 h-5 rounded-sm" src="../flags/cl-Chile-1x1.svg" alt="Bandera del país seleccionado">
+        <img id="flag-icon" class="w-5 h-5 rounded-sm" src="/assets/flags/cl-Chile-1x1.svg" alt="Bandera del país seleccionado">
       </div>
       <!-- Fin del selector de idioma -->
 
@@ -56,10 +56,10 @@
 <script>
   // Mapeo de valores del selector a la ruta de los archivos SVG
   const countryFlags = {
-    'cl': '../flags/cl-Chile-1x1.svg',
-    'br': '../flags/br-Brazil-1x1.svg',
-    'ar': '../flags/ar-Argentina-1x1.svg',
-    'us': '../flags/us-United-States-of-America-1x1.svg'
+    'cl': '/assets/flags/cl-Chile-1x1.svg',
+    'br': '/assets/flags/br-Brazil-1x1.svg',
+    'ar': '/assets/flags/ar-Argentina-1x1.svg',
+    'us': '/assets/flags/us-United-States-of-America-1x1.svg'
   };
 
   const countrySelect = document.getElementById('country-select');
